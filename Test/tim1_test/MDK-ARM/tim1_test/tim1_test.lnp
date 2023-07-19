@@ -1,0 +1,27 @@
+--cpu=Cortex-M4.fp.sp
+"tim1_test\startup_stm32g431xx.o"
+"tim1_test\main.o"
+"tim1_test\gpio.o"
+"tim1_test\tim.o"
+"tim1_test\stm32g4xx_it.o"
+"tim1_test\stm32g4xx_hal_msp.o"
+"tim1_test\stm32g4xx_hal_tim.o"
+"tim1_test\stm32g4xx_hal_tim_ex.o"
+"tim1_test\stm32g4xx_hal_pwr_ex.o"
+"tim1_test\stm32g4xx_hal.o"
+"tim1_test\stm32g4xx_hal_rcc.o"
+"tim1_test\stm32g4xx_hal_rcc_ex.o"
+"tim1_test\stm32g4xx_hal_flash.o"
+"tim1_test\stm32g4xx_hal_flash_ex.o"
+"tim1_test\stm32g4xx_hal_flash_ramfunc.o"
+"tim1_test\stm32g4xx_hal_gpio.o"
+"tim1_test\stm32g4xx_hal_exti.o"
+"tim1_test\stm32g4xx_hal_dma.o"
+"tim1_test\stm32g4xx_hal_dma_ex.o"
+"tim1_test\stm32g4xx_hal_pwr.o"
+"tim1_test\stm32g4xx_hal_cortex.o"
+"tim1_test\system_stm32g4xx.o"
+--strict --scatter "tim1_test\tim1_test.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "tim1_test.map" -o tim1_test\tim1_test.axf
