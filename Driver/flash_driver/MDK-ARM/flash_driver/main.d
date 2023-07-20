@@ -29,3 +29,5 @@ flash_driver\main.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ram
 flash_driver\main.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr.h
 flash_driver\main.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h
 flash_driver\main.o: ../Core/Inc/gpio.h
+flash_driver\main.o: ..\User\driver\flash_driver.h
+flash_driver\main.o: ..\User\bsp\flash_bsp.h

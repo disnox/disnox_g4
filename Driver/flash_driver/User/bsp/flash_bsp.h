@@ -67,5 +67,9 @@
 #define ADDR_FLASH_PAGE_62    ((uint32_t)0x0801F000) /* Base @ of Page 62, 2 Kbytes */
 #define ADDR_FLASH_PAGE_63    ((uint32_t)0x0801F800) /* Base @ of Page 63, 2 Kbytes */
 
+uint8_t flash_bsp_erase_pages(uint32_t start_addr, uint32_t end_addr);
+uint8_t flash_bsp_erase_page(uint8_t page);
+void flash_bsp_write_data(uint32_t addr, void *data, uint32_t size);
+
 #endif
 

@@ -61,18 +61,15 @@ void SystemClock_Config(void);
 #define DATA_32                 ((uint32_t)0x12345678)
 #define DATA_64                 ((uint64_t)0x1234567812345678)
 
+uint64_t data_64[2] = {0x1234567812345678, 0x8765432187654321}; 
+uint32_t data_32[3] = {0x12345678, 0x87654321, 0x87654321}; 
 
-uint32_t FirstPage = 0, NbOfPages = 0;
-uint32_t Address = 0, PageError = 0;
 __IO uint32_t MemoryProgramStatus = 0;
-__IO uint32_t data32 = 0;
+__IO uint32_t data32[3] = {0};
 
-FLASH_EraseInitTypeDef EraseInitStruct;
 
-static uint32_t GetPage(uint32_t Addr)
-{
-  return (Addr - FLASH_BASE) / FLASH_PAGE_SIZE;
-}
+
+
 
 /* USER CODE END 0 */
 
@@ -105,31 +102,14 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-	HAL_FLASH_Unlock();
-	__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_OPTVERR);
 	
-  FirstPage = GetPage(FLASH_USER_START_ADDR);
-  NbOfPages = GetPage(FLASH_USER_END_ADDR) - FirstPage + 1;
+	flash_erase_pages(FLASH_USER_START_ADDR, FLASH_USER_END_ADDR);
+	flash_bsp_erase_page(60);
+//	flash_bsp_write(ADDR_FLASH_PAGE_63, (uint64_t *)data_64, sizeof(data_64));
+//	flash_bsp_write(ADDR_FLASH_PAGE_63, (uint64_t *)data_32, sizeof(data_32));
 	
-	/* Fill EraseInit structure*/
-  EraseInitStruct.TypeErase   = FLASH_TYPEERASE_PAGES;
-  EraseInitStruct.Page        = FirstPage;
-  EraseInitStruct.NbPages     = NbOfPages;
-	HAL_FLASHEx_Erase(&EraseInitStruct, &PageError);
-//	FLASH_PageErase(63, FLASH_BANK_1);
+//	flash_bsp_read_data(ADDR_FLASH_PAGE_63, (uint32_t *)data32, sizeof(data32));
 	
-	Address = ADDR_FLASH_PAGE_63;
-	
-	HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, Address, DATA_32);
-	
-	Address = ADDR_FLASH_PAGE_60;
-	
-	HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, Address, DATA_32);
-	
-	HAL_FLASH_Lock();
-	
-	
-	data32 = *(__IO uint32_t *)Address;
 	
   /* USER CODE END 2 */
 
