@@ -166,7 +166,7 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
 	uint16_t adc_invalue = ADC1->JDR1;
 	
 
-	if ( ++i == 10 ) {
+	if ( ++i == 20 ) {
 		i = 0;
 		ano_start();
 		
