@@ -35,8 +35,8 @@ Section Cross References
     main.o(i.main) refers to dma.o(i.MX_DMA_Init) for MX_DMA_Init
     main.o(i.main) refers to adc.o(i.MX_ADC1_Init) for MX_ADC1_Init
     main.o(i.main) refers to adc.o(i.MX_ADC2_Init) for MX_ADC2_Init
-    main.o(i.main) refers to adc_drv.o(i.adc_driver_init) for adc_driver_init
-    main.o(i.main) refers to adc_drv.o(i.adc1_median_filter) for adc1_median_filter
+    main.o(i.main) refers to adc_driver.o(i.adc_driver_init) for adc_driver_init
+    main.o(i.main) refers to adc_driver.o(i.adc1_median_filter) for adc1_median_filter
     main.o(i.main) refers to main.o(.data) for .data
     adc.o(i.HAL_ADC_MspDeInit) refers to stm32g4xx_hal_gpio.o(i.HAL_GPIO_DeInit) for HAL_GPIO_DeInit
     adc.o(i.HAL_ADC_MspDeInit) refers to stm32g4xx_hal_dma.o(i.HAL_DMA_DeInit) for HAL_DMA_DeInit
@@ -285,11 +285,11 @@ Section Cross References
     adc_bsp.o(i.HAL_ADCEx_InjectedConvCpltCallback) refers to adc_bsp.o(i.adc1_injected) for adc1_injected
     adc_bsp.o(i.HAL_ADCEx_InjectedConvCpltCallback) refers to adc_bsp.o(i.adc2_injected) for adc2_injected
     adc_bsp.o(i.HAL_ADCEx_InjectedConvCpltCallback) refers to adc.o(.bss) for hadc1
-    adc_drv.o(i.adc1_avg_filter) refers to adc_bsp.o(.bss) for adc1_dma_value
-    adc_drv.o(i.adc1_median_filter) refers to adc_bsp.o(.bss) for adc1_dma_value
-    adc_drv.o(i.adc2_avg_filter) refers to adc_bsp.o(.bss) for adc2_dma_value
-    adc_drv.o(i.adc2_median_filter) refers to adc_bsp.o(.bss) for adc2_dma_value
-    adc_drv.o(i.adc_driver_init) refers to adc_bsp.o(i.adc_bsp_init) for adc_bsp_init
+    adc_driver.o(i.adc1_avg_filter) refers to adc_bsp.o(.bss) for adc1_dma_value
+    adc_driver.o(i.adc1_median_filter) refers to adc_bsp.o(.bss) for adc1_dma_value
+    adc_driver.o(i.adc2_avg_filter) refers to adc_bsp.o(.bss) for adc2_dma_value
+    adc_driver.o(i.adc2_median_filter) refers to adc_bsp.o(.bss) for adc2_dma_value
+    adc_driver.o(i.adc_driver_init) refers to adc_bsp.o(i.adc_bsp_init) for adc_bsp_init
     __main.o(!!!main) refers to __rtentry.o(.ARM.Collect$$rtentry$$00000000) for __rt_entry
     __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for __rt_entry_li
     __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for __rt_entry_main
@@ -724,12 +724,12 @@ Removing Unused input sections from the image.
     Removing adc_bsp.o(i.adc1_injected), (2 bytes).
     Removing adc_bsp.o(i.adc2_injected), (2 bytes).
     Removing adc_bsp.o(.bss), (10 bytes).
-    Removing adc_drv.o(.rev16_text), (4 bytes).
-    Removing adc_drv.o(.revsh_text), (4 bytes).
-    Removing adc_drv.o(.rrx_text), (6 bytes).
-    Removing adc_drv.o(i.adc1_avg_filter), (40 bytes).
-    Removing adc_drv.o(i.adc2_avg_filter), (40 bytes).
-    Removing adc_drv.o(i.adc2_median_filter), (72 bytes).
+    Removing adc_driver.o(.rev16_text), (4 bytes).
+    Removing adc_driver.o(.revsh_text), (4 bytes).
+    Removing adc_driver.o(.rrx_text), (6 bytes).
+    Removing adc_driver.o(i.adc1_avg_filter), (40 bytes).
+    Removing adc_driver.o(i.adc2_avg_filter), (40 bytes).
+    Removing adc_driver.o(i.adc2_median_filter), (72 bytes).
 
 335 unused section(s) (total 18886 bytes) removed from the image.
 
@@ -840,9 +840,9 @@ Image Symbol Table
     ..\Drivers\STM32G4xx_HAL_Driver\Src\stm32g4xx_hal_tim.c 0x00000000   Number         0  stm32g4xx_hal_tim.o ABSOLUTE
     ..\Drivers\STM32G4xx_HAL_Driver\Src\stm32g4xx_hal_tim_ex.c 0x00000000   Number         0  stm32g4xx_hal_tim_ex.o ABSOLUTE
     ..\User\bsp\adc_bsp.c                    0x00000000   Number         0  adc_bsp.o ABSOLUTE
-    ..\User\driver\adc_drv.c                 0x00000000   Number         0  adc_drv.o ABSOLUTE
+    ..\User\driver\adc_driver.c              0x00000000   Number         0  adc_driver.o ABSOLUTE
     ..\\User\\bsp\\adc_bsp.c                 0x00000000   Number         0  adc_bsp.o ABSOLUTE
-    ..\\User\\driver\\adc_drv.c              0x00000000   Number         0  adc_drv.o ABSOLUTE
+    ..\\User\\driver\\adc_driver.c           0x00000000   Number         0  adc_driver.o ABSOLUTE
     dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
     startup_stm32g431xx.s                    0x00000000   Number         0  startup_stm32g431xx.o ABSOLUTE
     RESET                                    0x08000000   Section      472  startup_stm32g431xx.o(RESET)
@@ -959,9 +959,9 @@ Image Symbol Table
     i.UsageFault_Handler                     0x08001de8   Section        0  stm32g4xx_it.o(i.UsageFault_Handler)
     i.__NVIC_SetPriority                     0x08001dea   Section        0  stm32g4xx_hal_cortex.o(i.__NVIC_SetPriority)
     __NVIC_SetPriority                       0x08001deb   Thumb Code    32  stm32g4xx_hal_cortex.o(i.__NVIC_SetPriority)
-    i.adc1_median_filter                     0x08001e0c   Section        0  adc_drv.o(i.adc1_median_filter)
+    i.adc1_median_filter                     0x08001e0c   Section        0  adc_driver.o(i.adc1_median_filter)
     i.adc_bsp_init                           0x08001e54   Section        0  adc_bsp.o(i.adc_bsp_init)
-    i.adc_driver_init                        0x08001e56   Section        0  adc_drv.o(i.adc_driver_init)
+    i.adc_driver_init                        0x08001e56   Section        0  adc_driver.o(i.adc_driver_init)
     i.main                                   0x08001e5c   Section        0  main.o(i.main)
     x$fpl$fpinit                             0x08001ea0   Section       10  fpinit.o(x$fpl$fpinit)
     $v0                                      0x08001ea0   Number         0  fpinit.o(x$fpl$fpinit)
@@ -1191,9 +1191,9 @@ Image Symbol Table
     SystemClock_Config                       0x08001d71   Thumb Code   102  main.o(i.SystemClock_Config)
     SystemInit                               0x08001dd9   Thumb Code    12  system_stm32g4xx.o(i.SystemInit)
     UsageFault_Handler                       0x08001de9   Thumb Code     2  stm32g4xx_it.o(i.UsageFault_Handler)
-    adc1_median_filter                       0x08001e0d   Thumb Code    68  adc_drv.o(i.adc1_median_filter)
+    adc1_median_filter                       0x08001e0d   Thumb Code    68  adc_driver.o(i.adc1_median_filter)
     adc_bsp_init                             0x08001e55   Thumb Code     2  adc_bsp.o(i.adc_bsp_init)
-    adc_driver_init                          0x08001e57   Thumb Code     4  adc_drv.o(i.adc_driver_init)
+    adc_driver_init                          0x08001e57   Thumb Code     4  adc_driver.o(i.adc_driver_init)
     main                                     0x08001e5d   Thumb Code    64  main.o(i.main)
     _fp_init                                 0x08001ea1   Thumb Code    10  fpinit.o(x$fpl$fpinit)
     __fplib_config_fpu_vfp                   0x08001ea9   Thumb Code     0  fpinit.o(x$fpl$fpinit)
@@ -1340,9 +1340,9 @@ Memory Map of the image
     0x08001de8   0x08001de8   0x00000002   Code   RO          275    i.UsageFault_Handler  stm32g4xx_it.o
     0x08001dea   0x08001dea   0x00000020   Code   RO         2182    i.__NVIC_SetPriority  stm32g4xx_hal_cortex.o
     0x08001e0a   0x08001e0a   0x00000002   PAD
-    0x08001e0c   0x08001e0c   0x00000048   Code   RO         2423    i.adc1_median_filter  adc_drv.o
+    0x08001e0c   0x08001e0c   0x00000048   Code   RO         2423    i.adc1_median_filter  adc_driver.o
     0x08001e54   0x08001e54   0x00000002   Code   RO         2376    i.adc_bsp_init      adc_bsp.o
-    0x08001e56   0x08001e56   0x00000004   Code   RO         2426    i.adc_driver_init   adc_drv.o
+    0x08001e56   0x08001e56   0x00000004   Code   RO         2426    i.adc_driver_init   adc_driver.o
     0x08001e5a   0x08001e5a   0x00000002   PAD
     0x08001e5c   0x08001e5c   0x00000044   Code   RO           15    i.main              main.o
     0x08001ea0   0x08001ea0   0x0000000a   Code   RO         2563    x$fpl$fpinit        fz_wm.l(fpinit.o)
@@ -1374,28 +1374,28 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       704         64          0          4        408       2934   adc.o
-         2          0          0          0         40       1047   adc_bsp.o
-        76          4          0          0          0       1139   adc_drv.o
-        76          4          0          0          0        818   dma.o
-        76          6          0          0          0        871   gpio.o
-       174          4          0          8          0     594748   main.o
+       704         64          0          4        408       2950   adc.o
+         2          0          0          0         40       1055   adc_bsp.o
+        76          4          0          0          0       1155   adc_driver.o
+        76          4          0          0          0        822   dma.o
+        76          6          0          0          0        875   gpio.o
+       174          4          0          8          0     594776   main.o
         64         26        472          0       1536        844   startup_stm32g431xx.o
-       126         20          0         12          0       3689   stm32g4xx_hal.o
-      1630         82          0          0          0      73099   stm32g4xx_hal_adc.o
-       224          8          0          0          0      67639   stm32g4xx_hal_adc_ex.o
-       198         14          0          0          0      33839   stm32g4xx_hal_cortex.o
-       478         30          0          0          0       3356   stm32g4xx_hal_dma.o
-       584         34          0          0          0       1684   stm32g4xx_hal_gpio.o
-        48          6          0          0          0        862   stm32g4xx_hal_msp.o
-       204         18          0          0          0       1405   stm32g4xx_hal_pwr_ex.o
-      1624         68          0          0          0       5082   stm32g4xx_hal_rcc.o
-       648         10          0          0          0       1876   stm32g4xx_hal_rcc_ex.o
-        44         12          0          0          0       5132   stm32g4xx_it.o
-        16          4         16          4          0       1127   system_stm32g4xx.o
+       126         20          0         12          0       3693   stm32g4xx_hal.o
+      1630         82          0          0          0      73119   stm32g4xx_hal_adc.o
+       224          8          0          0          0      67655   stm32g4xx_hal_adc_ex.o
+       198         14          0          0          0      33847   stm32g4xx_hal_cortex.o
+       478         30          0          0          0       3364   stm32g4xx_hal_dma.o
+       584         34          0          0          0       1688   stm32g4xx_hal_gpio.o
+        48          6          0          0          0        866   stm32g4xx_hal_msp.o
+       204         18          0          0          0       1409   stm32g4xx_hal_pwr_ex.o
+      1624         68          0          0          0       5094   stm32g4xx_hal_rcc.o
+       648         10          0          0          0       1880   stm32g4xx_hal_rcc_ex.o
+        44         12          0          0          0       5156   stm32g4xx_it.o
+        16          4         16          4          0       1135   system_stm32g4xx.o
 
     ----------------------------------------------------------------------
-      7010        414        522         28       1984     801191   Object Totals
+      7010        414        522         28       1984     801383   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         14          0          2          0          0          0   (incl. Padding)
 
@@ -1447,8 +1447,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      7378        430        522         28       2084     797163   Grand Totals
-      7378        430        522         28       2084     797163   ELF Image Totals
+      7378        430        522         28       2084     797355   Grand Totals
+      7378        430        522         28       2084     797355   ELF Image Totals
       7378        430        522         28          0          0   ROM Totals
 
 ==============================================================================

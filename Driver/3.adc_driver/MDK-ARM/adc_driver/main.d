@@ -34,3 +34,5 @@ adc_driver\main.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h
 adc_driver\main.o: ../Core/Inc/adc.h
 adc_driver\main.o: ../Core/Inc/dma.h
 adc_driver\main.o: ../Core/Inc/gpio.h
+adc_driver\main.o: ../User/driver/adc_driver.h
+adc_driver\main.o: ../User/bsp/adc_bsp.h

@@ -105,7 +105,7 @@ int main(void)
 //			led_toggle(led_net_blue);
 			time2 = HAL_GetTick();
 		}
-		led_on(led_net_red|led_net_blue);
+		led_on(led_net_red);
 		led_on(led_net_blue);
 		HAL_Delay(1000);
 //		led_off(led_net_red|led_net_blue);

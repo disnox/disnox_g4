@@ -1,0 +1,27 @@
+--cpu=Cortex-M4.fp.sp
+"pwm_driver\startup_stm32g431xx.o"
+"pwm_driver\main.o"
+"pwm_driver\gpio.o"
+"pwm_driver\tim.o"
+"pwm_driver\stm32g4xx_it.o"
+"pwm_driver\stm32g4xx_hal_msp.o"
+"pwm_driver\stm32g4xx_hal_tim.o"
+"pwm_driver\stm32g4xx_hal_tim_ex.o"
+"pwm_driver\stm32g4xx_hal_pwr_ex.o"
+"pwm_driver\stm32g4xx_hal.o"
+"pwm_driver\stm32g4xx_hal_rcc.o"
+"pwm_driver\stm32g4xx_hal_rcc_ex.o"
+"pwm_driver\stm32g4xx_hal_flash.o"
+"pwm_driver\stm32g4xx_hal_flash_ex.o"
+"pwm_driver\stm32g4xx_hal_flash_ramfunc.o"
+"pwm_driver\stm32g4xx_hal_gpio.o"
+"pwm_driver\stm32g4xx_hal_exti.o"
+"pwm_driver\stm32g4xx_hal_dma.o"
+"pwm_driver\stm32g4xx_hal_dma_ex.o"
+"pwm_driver\stm32g4xx_hal_pwr.o"
+"pwm_driver\stm32g4xx_hal_cortex.o"
+"pwm_driver\system_stm32g4xx.o"
+--strict --scatter "pwm_driver\pwm_driver.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "pwm_driver.map" -o pwm_driver\pwm_driver.axf

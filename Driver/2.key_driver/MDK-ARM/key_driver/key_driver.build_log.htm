@@ -3,62 +3,31 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: ¦ÌVision V5.29.0.0
-Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: disnox disnox@qq.com, disnox, LIC=UJWP0-BXIFQ-Z9QG9-4JG55-PD1AC-8NKJT
+IDE-Version: ¦ÌVision V5.35.0.0
+Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: NOX NOX, NOX, LIC=ATTQ1-CJSB7-QD5KD-8FSKL-6BJKI-TGE5Q
  
 Tool Versions:
-Toolchain:       MDK-ARM Plus  Version: 5.29.0.0
+Toolchain:       MDK-ARM Plus  Version: 5.35.0.2
 Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
-C Compiler:      Armcc.exe V5.06 update 6 (build 750)
-Assembler:       Armasm.exe V5.06 update 6 (build 750)
-Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
-Library Manager: ArmAr.exe V5.06 update 6 (build 750)
-Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
-CPU DLL:         SARMCM3.DLL V5.29.0.0
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.35.0.2
 Dialog DLL:      DCM.DLL V1.17.3.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.7.0
-Dialog DLL:      TCM.DLL V1.36.5.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
+Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
-D:\Git\disnox_g4\Driver\2.key_driver\MDK-ARM\key_driver.uvprojx
-Project File Date:  07/24/2023
+E:\Code\g4\disnox_g431\Driver\2.key_driver\MDK-ARM\key_driver.uvprojx
+Project File Date:  07/11/2023
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'key_driver'
-assembling startup_stm32g431xx.s...
-compiling stm32g4xx_hal_tim_ex.c...
-compiling stm32g4xx_hal_flash.c...
-compiling stm32g4xx_hal_msp.c...
-compiling stm32g4xx_it.c...
-compiling main.c...
-compiling gpio.c...
-compiling stm32g4xx_hal_pwr_ex.c...
-compiling stm32g4xx_hal_tim.c...
-compiling stm32g4xx_hal_flash_ex.c...
-compiling stm32g4xx_hal.c...
-compiling stm32g4xx_hal_rcc.c...
-compiling stm32g4xx_hal_rcc_ex.c...
-compiling stm32g4xx_hal_dma_ex.c...
-compiling stm32g4xx_hal_flash_ramfunc.c...
-compiling stm32g4xx_hal_pwr.c...
-compiling stm32g4xx_hal_gpio.c...
-compiling stm32g4xx_hal_dma.c...
-compiling system_stm32g4xx.c...
-compiling key_bsp.c...
-..\User\bsp\key_bsp.c(4): warning:  #177-D: variable "key_ports"  was declared but never referenced
-  static key_bsp_gpio_t* key_ports[] = {
-..\User\bsp\key_bsp.c(12): warning:  #177-D: variable "key_pins"  was declared but never referenced
-  static uint16_t key_pins[] = {
-..\User\bsp\key_bsp.c: 2 warnings, 0 errors
-compiling stm32g4xx_hal_cortex.c...
-compiling stm32g4xx_hal_exti.c...
-compiling key_driver.c...
-linking...
-Program Size: Code=3992 RO-data=520 RW-data=24 ZI-data=1872  
-FromELF: creating hex file...
-"key_driver\key_driver.axf" - 0 Error(s), 2 Warning(s).
+"key_driver\key_driver.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -69,20 +38,20 @@ Package Vendor: ARM
    * Component: CORE Version: 5.5.0
 
 Package Vendor: Keil
-                http://www.keil.com/pack/Keil.STM32G4xx_DFP.1.4.0.pack
-                Keil.STM32G4xx_DFP.1.4.0
+                http://www.keil.com/pack/Keil.STM32G4xx_DFP.1.2.0.pack
+                Keil.STM32G4xx_DFP.1.2.0
                 STMicroelectronics STM32G4 Series Device Support, Drivers and Examples
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\_key_driver
-  C:\Users\disno\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
-  C:\Users\disno\AppData\Local\Arm\Packs\Keil\STM32G4xx_DFP\1.4.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include
+  C:\Users\QQ452\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+  C:\Users\QQ452\AppData\Local\Arm\Packs\Keil\STM32G4xx_DFP\1.2.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include
 
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.5.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Build Time Elapsed:  00:00:11
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>
