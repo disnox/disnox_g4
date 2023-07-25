@@ -26,7 +26,7 @@
 "adc_driver\stm32g4xx_hal_tim_ex.o"
 "adc_driver\system_stm32g4xx.o"
 "adc_driver\adc_bsp.o"
-"adc_driver\adc_driver.o"
+"adc_driver\adc_drv.o"
 --strict --scatter "adc_driver\adc_driver.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
