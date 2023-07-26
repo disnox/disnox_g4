@@ -55,3 +55,4 @@ foc_driver\vofa.o: ../Core/Inc/usart.h
 foc_driver\vofa.o: ..\User\motor\foc_control.h
 foc_driver\vofa.o: ..\User\motor\foc_calculate.h
 foc_driver\vofa.o: ../Core/Inc/tim.h
+foc_driver\vofa.o: ..\User\motor\foc_driver.h

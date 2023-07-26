@@ -13,9 +13,10 @@
 #define TWO_BY_SQRT3			(1.15470053838f)
 
 #define SQ(x) 					((x) * (x))
-#define ABS(x) 					( (x)>0?(x):-(x) ) 
-//#define MIN(a,b) 				(((a)<(b))?(a):(b))
-//#define MAX(a,b) 				(((a)>(b))?(a):(b))
+#define ABS(x) 					((x)>0?(x):-(x)) 
+
+#define min(x,y) 				(((x)<(y))?(x):(y))
+#define max(x,y) 				(((x)>(y))?(x):(y))
 
 extern float value_tmp[3];
 
@@ -44,7 +45,8 @@ void clarke_transform(foc_para_t *foc);
 void inverse_clarke(foc_para_t *foc);
 void park_transform(foc_para_t *foc);
 void inverse_park(foc_para_t *foc);
-void svpwm(foc_para_t *foc);
+void svpwm_midpoint(foc_para_t *foc);
+void svpwm_sector(foc_para_t *foc);
 void foc_calculate(foc_para_t *foc);
 
 #endif /* __FOC_CALCULATE_H__ */

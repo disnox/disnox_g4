@@ -1,12 +1,16 @@
 #include "foc_calculate.h"
 
+void SVPWM_Generate(foc_para_t *foc);
+
 void foc_calculate(foc_para_t *foc)
 {
 	sin_cos_val(foc);
 	clarke_transform(foc);
 	park_transform(foc);
 	inverse_park(foc);
-	svpwm(foc);
+//	svpwm_midpoint(foc);
+	svpwm_sector(foc);
+//	SVPWM_Generate(foc);
 }
 
 void sin_cos_val(foc_para_t *foc)
@@ -48,51 +52,203 @@ void inverse_park(foc_para_t *foc)
 	foc->v_beta  = (foc->v_d * foc->sin_val + foc->v_q * foc->cos_val);
 }
 
-float value_tmp[3];
-void svpwm(foc_para_t *foc)
+void svpwm_midpoint(foc_para_t *foc)
+{ 
+  float va = foc->v_alpha;  
+  float vb = -0.5f * foc->v_alpha + SQRT3_BY_2 * foc->v_beta; 
+  float vc = -0.5f * foc->v_alpha - SQRT3_BY_2 * foc->v_beta; 
+
+	float vmax = max(max(va, vb), vc);
+	float vmin = min(min(va, vb), vc);
+  
+  float vcom = (vmax + vmin) * 0.5f;
+	
+	foc->dtc_a = (va - vcom) + 0.5f;
+	foc->dtc_b = (vb - vcom) + 0.5f;
+	foc->dtc_c = (vc - vcom) + 0.5f;
+}
+#define PWM 8500
+void svpwm_sector(foc_para_t *foc) 
 {
-  float Vmax = 0.0f, Vmin = 0.0f, Vcom;
-  float Vectora,Vectorb,Vectorc;
-	float T1,T2,T3;
-	float Va_tmp ,Vb_tmp;	
-	
-	
-  Va_tmp = foc->v_alpha * 0.5f;
-  Vb_tmp = SQRT3_BY_2 * foc->v_beta;
-  
-  Vectora = foc->v_alpha;  //alpha
-  Vectorb = -Va_tmp + Vb_tmp; //-0.5*alpha + sqrt(3)/2 * beta;
-  Vectorc = -Va_tmp - Vb_tmp; //-0.5*alpha - sqrt(3)/2 * beta;
+  int sector = 0;
+	float Vref1,Vref2,Vref3;
+	float Ta,Tb,Tc;
+	float X,Y,Z;
+  float T1;
+  float T2;
 
-  if (Vectora > Vectorb) {
-    Vmax = Vectora;
-    Vmin = Vectorb;
-  }
-  else {
-    Vmax = Vectorb;
-    Vmin = Vectora;
-  }
-
-  if (Vectorc > Vmax) {
-    Vmax = Vectorc;
-  }
-  else if (Vectorc < Vmin) {
-    Vmin = Vectorc;
-  }
-  
-  Vcom = (Vmax + Vmin) * 0.5f;
-
-	T1 = (Vcom - Vectora);
-  T2 = (Vcom - Vectorb);
-  T3 = (Vcom - Vectorc);
+  float Tcmp1 = 0.0f;
+  float Tcmp2 = 0.0f ;
+  float Tcmp3 = 0.0f;
 	
-	value_tmp[0] = T1 + 0.5f;
-	value_tmp[1] = T2 + 0.5f;
-	value_tmp[2] = T3 + 0.5f;
-	TIM1->CCR1 = (value_tmp[0]*8500);
-	TIM1->CCR2 = (value_tmp[1]*8500);
-	TIM1->CCR3 = (value_tmp[2]*8500);
+	/* Parameters statement */
+	Vref1 = foc->v_beta;
+	Vref2 = (1.73205078f * foc->v_alpha - foc->v_beta) / 2.0f;
+	Vref3 = (-1.73205078f * foc->v_alpha - foc->v_beta) / 2.0f;
+	/* 计算扇区 */
+  if (Vref1 > 0.0f) sector = 1;
+  if (Vref2 > 0.0f) sector += 2;
+  if (Vref3 > 0.0f) sector += 4;
+	/* 计算X Y Z */
+	X = 1.73205078f * foc->v_beta;
+	Y = (1.5f * foc->v_alpha + 0.866025388f * foc->v_beta);
+	Z = (-1.5f * foc->v_alpha + 0.866025388f * foc->v_beta);
+	/* 占空比计算 */
+  switch(sector) 
+	{
+   case 1:T1 =  Z;  T2 =  Y;  break;
+	 case 2:T1 =  Y;  T2 = -X;  break;
+   case 3:T1 = -Z;  T2 =  X;  break;
+	 case 4:T1 = -X;  T2 =  Z;  break;
+   case 5:T1 =  X;  T2 = -Y;  break;
+   case 6:T1 = -Y;  T2 = -Z;  break; 
+  }
+
+//  if(T1 + T2 > PWM) 
+//	{
+//    T1 = T1/(T1 + T2);
+//    T2 = T2/(T1 + T2);
+//  }
+
+  Ta = (1.0f - (T1 + T2)) / 4.0f;
+  Tb = T1 / 2.0f +Ta;
+  Tc = T2 / 2.0f +Tb;
+	
+  switch (sector) 
+	{
+   case 1:Tcmp1 = Tb; Tcmp2 = Ta; Tcmp3 = Tc;break;
+   case 2:Tcmp1 = Ta; Tcmp2 = Tc; Tcmp3 = Tb;break;
+   case 3:Tcmp1 = Ta; Tcmp2 = Tb; Tcmp3 = Tc;break;
+   case 4:Tcmp1 = Tc; Tcmp2 = Tb; Tcmp3 = Ta;break;
+   case 5:Tcmp1 = Tc; Tcmp2 = Ta; Tcmp3 = Tb;break;
+   case 6:Tcmp1 = Tb; Tcmp2 = Tc; Tcmp3 = Ta;break;
+  }
+	
+	foc->dtc_a = Tcmp1;
+	foc->dtc_b = Tcmp2;
+	foc->dtc_c = Tcmp3;
 }
 
+#define     TS              	8500
 
+#define     LIMIT           	(float)(MAX_DUTY_CYCLE / SQRT3)
+
+#define     SQRT3_MULT_TS   (float)((float)TS * SQRT3)
+	static const uint8_t sectionMap[7] = {0, 2, 6, 1, 4, 3, 5};
+void SVPWM_Generate(foc_para_t *foc)
+{	
+    float U1, U2, U3;
+	float udc = 24.0f;
+    uint8_t a, b, c, n = 0;
+    uint16_t channel1 = 0, channel2 = 0, channel3 = 0;
+    
+    U1 = foc->v_beta;
+    U2 = (SQRT3 * foc->v_alpha - foc->v_beta) / 2.0f;
+    U3 = (-SQRT3 * foc->v_alpha - foc->v_beta) / 2.0f;
+ 
+    if(U1 > 0.0f)
+        a = 1;
+    else 
+        a = 0;
+    if(U2 > 0.0f)
+        b = 1;
+    else 
+        b = 0;
+    if(U3 > 0.0f)
+        c = 1;
+    else 
+        c = 0;
+    
+    n = (c << 2) + (b << 1) + a;
+    
+    switch(sectionMap[n])
+    {
+	case 0:
+	{
+		channel1 = TS / 2;
+		channel2 = TS / 2;
+		channel3 = TS / 2;
+	}break;
+	
+	case 1:
+	{
+		int16_t t4 = SQRT3_MULT_TS * U2 / udc;
+		int16_t t6 = SQRT3_MULT_TS * U1 / udc;
+		int16_t t0 = (TS - t4 - t6) / 2;
+		
+		channel1 = t4 + t6 + t0;
+		channel2 = t6 + t0;
+		channel3 = t0;
+	}break;
+	
+	case 2:
+	{
+		int16_t t2 = -SQRT3_MULT_TS * U2 / udc;
+		int16_t t6 = -SQRT3_MULT_TS * U3 / udc;
+		int16_t t0 = (TS - t2 - t6) / 2;
+		
+		channel1 = t6 + t0;
+		channel2 = t2 + t6 + t0;
+		channel3 = t0;
+	}break;
+	
+	case 3:
+	{
+		int16_t t2 = SQRT3_MULT_TS * U1 / udc;
+		int16_t t3 = SQRT3_MULT_TS * U3 / udc;
+		int16_t t0 = (TS - t2 - t3) / 2;
+		
+		channel1 = t0;
+		channel2 = t2 + t3 + t0;
+		channel3 = t3 + t0;
+	}break;
+	
+	case 4:
+	{
+		int16_t t1 = -SQRT3_MULT_TS * U1 / udc;
+		int16_t t3 = -SQRT3_MULT_TS * U2 / udc;
+		int16_t t0 = (TS - t1 - t3) / 2;
+		
+		channel1 = t0;
+		channel2 = t3 + t0;
+		channel3 = t1 + t3 + t0;
+	}break;
+	
+	case 5:
+	{
+		int16_t t1 = SQRT3_MULT_TS * U3 / udc;
+		int16_t t5 = SQRT3_MULT_TS * U2 / udc;
+		int16_t t0 = (TS - t1 - t5) / 2;
+		
+		channel1 = t5 + t0;
+		channel2 = t0;
+		channel3 = t1 + t5 + t0;
+	}break;
+	
+	case 6:
+	{
+		int16_t t4 = -SQRT3_MULT_TS * U3 / udc;
+		int16_t t5 = -SQRT3_MULT_TS * U1 / udc;
+		int16_t t0 = (TS - t4 - t5) / 2;
+		
+		channel1 = t4 + t5 + t0;
+		channel2 = t0;
+		channel3 = t5 + t0;
+	}break;
+	
+	default:
+		break;
+    }
+
+    if(channel1 > TS)
+        channel1 = TS;
+    if(channel2 > TS)
+        channel2 = TS;
+    if(channel3 > TS)
+        channel3 = TS;
+	
+    foc->dtc_a = channel1;
+    foc->dtc_b = channel2;
+    foc->dtc_c = channel3;	
+}
 

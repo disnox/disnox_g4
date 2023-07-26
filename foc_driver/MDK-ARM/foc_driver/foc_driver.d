@@ -1,6 +1,5 @@
 foc_driver\foc_driver.o: ..\User\motor\foc_driver.c
 foc_driver\foc_driver.o: ..\User\motor\foc_driver.h
-foc_driver\foc_driver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 foc_driver\foc_driver.o: ../Core/Inc/tim.h
 foc_driver\foc_driver.o: ../Core/Inc/main.h
 foc_driver\foc_driver.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h
@@ -42,3 +41,5 @@ foc_driver\foc_driver.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_e
 foc_driver\foc_driver.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h
 foc_driver\foc_driver.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h
 foc_driver\foc_driver.o: ..\User\motor\foc_calculate.h
+foc_driver\foc_driver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+foc_driver\foc_driver.o: ..\User\motor\foc_control.h

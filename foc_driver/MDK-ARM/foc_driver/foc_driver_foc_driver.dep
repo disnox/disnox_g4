@@ -1,7 +1,7 @@
 Dependencies for Project 'foc_driver', Target 'foc_driver': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (startup_stm32g431xx.s)(0x64BFB505)(--cpu Cortex-M4.fp.sp -g --apcs=interwork -I.\RTE\_foc_driver-IC:\Users\QQ452\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\QQ452\AppData\Local\Arm\Packs\Keil\STM32G4xx_DFP\1.2.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include--pd "__UVISION_VERSION SETA 535" --pd "_RTE_ SETA 1" --pd "STM32G431xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32g431xx.lst --xref -o foc_driver\startup_stm32g431xx.o --depend foc_driver\startup_stm32g431xx.d)
-F (../Core/Src/main.c)(0x64BFCF66)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../USB_Device/App -I ../USB_Device/Target -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ..\User\motor -I ..\User\utils -I ..\User\bsp -I ..\User\driver-I.\RTE\_foc_driver-IC:\Users\QQ452\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\QQ452\AppData\Local\Arm\Packs\Keil\STM32G4xx_DFP\1.2.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o foc_driver\main.o --omf_browse foc_driver\main.crf --depend foc_driver\main.d)
+F (../Core/Src/main.c)(0x64C13C69)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../USB_Device/App -I ../USB_Device/Target -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ..\User\motor -I ..\User\utils -I ..\User\bsp -I ..\User\driver-I.\RTE\_foc_driver-IC:\Users\QQ452\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\QQ452\AppData\Local\Arm\Packs\Keil\STM32G4xx_DFP\1.2.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o foc_driver\main.o --omf_browse foc_driver\main.crf --depend foc_driver\main.d)
 I (../Core/Inc/main.h)(0x64BA79C7)
 I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h)(0x62D24A8A)
 I (../Core/Inc/stm32g4xx_hal_conf.h)(0x64BA79C7)
@@ -59,8 +59,8 @@ I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x60252378)
 I (..\User\utils\vofa.h)(0x64BA8448)
 I (..\User\driver\adc_driver.h)(0x64BFBF7B)
 I (..\User\bsp\adc_bsp.h)(0x64BFCA3A)
-I (..\User\motor\foc_control.h)(0x64BFE28D)
-I (..\User\motor\foc_calculate.h)(0x64BFE1C7)
+I (..\User\motor\foc_control.h)(0x64BFE54F)
+I (..\User\motor\foc_calculate.h)(0x64C12E64)
 F (../Core/Src/gpio.c)(0x64BA79C7)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../USB_Device/App -I ../USB_Device/Target -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ..\User\motor -I ..\User\utils -I ..\User\bsp -I ..\User\driver-I.\RTE\_foc_driver-IC:\Users\QQ452\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\QQ452\AppData\Local\Arm\Packs\Keil\STM32G4xx_DFP\1.2.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o foc_driver\gpio.o --omf_browse foc_driver\gpio.crf --depend foc_driver\gpio.d)
 I (../Core/Inc/gpio.h)(0x64BA79C7)
 I (../Core/Inc/main.h)(0x64BA79C7)
@@ -1634,7 +1634,7 @@ I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h)(0x62D24A8A)
 I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h)(0x62D24A8A)
 I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h)(0x62D24A8A)
 I (..\User\bsp\adc_bsp.h)(0x64BFCA3A)
-F (..\User\utils\vofa.c)(0x64BFCF26)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../USB_Device/App -I ../USB_Device/Target -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ..\User\motor -I ..\User\utils -I ..\User\bsp -I ..\User\driver-I.\RTE\_foc_driver-IC:\Users\QQ452\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\QQ452\AppData\Local\Arm\Packs\Keil\STM32G4xx_DFP\1.2.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o foc_driver\vofa.o --omf_browse foc_driver\vofa.crf --depend foc_driver\vofa.d)
+F (..\User\utils\vofa.c)(0x64C142FD)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../USB_Device/App -I ../USB_Device/Target -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ..\User\motor -I ..\User\utils -I ..\User\bsp -I ..\User\driver-I.\RTE\_foc_driver-IC:\Users\QQ452\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\QQ452\AppData\Local\Arm\Packs\Keil\STM32G4xx_DFP\1.2.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o foc_driver\vofa.o --omf_browse foc_driver\vofa.crf --depend foc_driver\vofa.d)
 I (..\User\utils\vofa.h)(0x64BA8448)
 I (../Core/Inc/main.h)(0x64BA79C7)
 I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h)(0x62D24A8A)
@@ -1686,11 +1686,57 @@ I (../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h)(0x62D24A8B)
 I (../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h)(0x62D24A8B)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x60252378)
 I (../Core/Inc/usart.h)(0x64BA79C7)
-I (..\User\motor\foc_control.h)(0x64BFE28D)
-I (..\User\motor\foc_calculate.h)(0x64BFE1C7)
+I (..\User\motor\foc_control.h)(0x64BFE54F)
+I (..\User\motor\foc_calculate.h)(0x64C12E64)
 I (../Core/Inc/tim.h)(0x64BA79C7)
-F (..\User\motor\foc_driver.c)(0x64BFE2D4)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../USB_Device/App -I ../USB_Device/Target -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ..\User\motor -I ..\User\utils -I ..\User\bsp -I ..\User\driver-I.\RTE\_foc_driver-IC:\Users\QQ452\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\QQ452\AppData\Local\Arm\Packs\Keil\STM32G4xx_DFP\1.2.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o foc_driver\foc_driver.o --omf_browse foc_driver\foc_driver.crf --depend foc_driver\foc_driver.d)
-I (..\User\motor\foc_driver.h)(0x64BFE269)
+I (..\User\motor\foc_driver.h)(0x64BFE5A2)
+F (..\User\motor\foc_driver.c)(0x64BFE5A8)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../USB_Device/App -I ../USB_Device/Target -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ..\User\motor -I ..\User\utils -I ..\User\bsp -I ..\User\driver-I.\RTE\_foc_driver-IC:\Users\QQ452\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\QQ452\AppData\Local\Arm\Packs\Keil\STM32G4xx_DFP\1.2.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o foc_driver\foc_driver.o --omf_browse foc_driver\foc_driver.crf --depend foc_driver\foc_driver.d)
+I (..\User\motor\foc_driver.h)(0x64BFE5A2)
+I (../Core/Inc/tim.h)(0x64BA79C7)
+I (../Core/Inc/main.h)(0x64BA79C7)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h)(0x62D24A8A)
+I (../Core/Inc/stm32g4xx_hal_conf.h)(0x64BA79C7)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h)(0x62D24A8A)
+I (../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h)(0x62D24A87)
+I (../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h)(0x62D24A87)
+I (../Drivers/CMSIS/Include/core_cm4.h)(0x62D24A8A)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025237E)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x62D24A8A)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x62D24A8A)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x62D24A8A)
+I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x62D24A8A)
+I (../Drivers/CMSIS/Device/ST/STM32G4xx/Include/system_stm32g4xx.h)(0x62D24A87)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x62D24A8A)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025237E)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc_ex.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio_ex.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma_ex.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_adc.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc_ex.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_exti.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ex.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ramfunc.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pcd.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usb.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pcd_ex.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h)(0x62D24A8A)
+I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h)(0x62D24A8A)
+I (..\User\motor\foc_calculate.h)(0x64C12E64)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x60252378)
+I (..\User\motor\foc_control.h)(0x64BFE54F)
+F (..\User\motor\foc_control.c)(0x64C13B1C)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../USB_Device/App -I ../USB_Device/Target -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ..\User\motor -I ..\User\utils -I ..\User\bsp -I ..\User\driver-I.\RTE\_foc_driver-IC:\Users\QQ452\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\QQ452\AppData\Local\Arm\Packs\Keil\STM32G4xx_DFP\1.2.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o foc_driver\foc_control.o --omf_browse foc_driver\foc_control.crf --depend foc_driver\foc_control.d)
+I (..\User\motor\foc_control.h)(0x64BFE54F)
+I (..\User\motor\foc_calculate.h)(0x64C12E64)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x60252378)
 I (../Core/Inc/tim.h)(0x64BA79C7)
 I (../Core/Inc/main.h)(0x64BA79C7)
@@ -1731,57 +1777,13 @@ I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h)(0x62D24A8A)
 I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h)(0x62D24A8A)
 I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h)(0x62D24A8A)
 I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h)(0x62D24A8A)
-I (..\User\motor\foc_calculate.h)(0x64BFE1C7)
-F (..\User\motor\foc_control.c)(0x64BFE2B9)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../USB_Device/App -I ../USB_Device/Target -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ..\User\motor -I ..\User\utils -I ..\User\bsp -I ..\User\driver-I.\RTE\_foc_driver-IC:\Users\QQ452\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\QQ452\AppData\Local\Arm\Packs\Keil\STM32G4xx_DFP\1.2.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o foc_driver\foc_control.o --omf_browse foc_driver\foc_control.crf --depend foc_driver\foc_control.d)
-I (..\User\motor\foc_control.h)(0x64BFE28D)
-I (..\User\motor\foc_calculate.h)(0x64BFE1C7)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x60252378)
-I (../Core/Inc/tim.h)(0x64BA79C7)
-I (../Core/Inc/main.h)(0x64BA79C7)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h)(0x62D24A8A)
-I (../Core/Inc/stm32g4xx_hal_conf.h)(0x64BA79C7)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h)(0x62D24A8A)
-I (../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g4xx.h)(0x62D24A87)
-I (../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h)(0x62D24A87)
-I (../Drivers/CMSIS/Include/core_cm4.h)(0x62D24A8A)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025237E)
-I (../Drivers/CMSIS/Include/cmsis_version.h)(0x62D24A8A)
-I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x62D24A8A)
-I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x62D24A8A)
-I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x62D24A8A)
-I (../Drivers/CMSIS/Device/ST/STM32G4xx/Include/system_stm32g4xx.h)(0x62D24A87)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x62D24A8A)
-I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025237E)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc_ex.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio_ex.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma_ex.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_cortex.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_adc.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_adc_ex.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_exti.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ex.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ramfunc.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pcd.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usb.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pcd_ex.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h)(0x62D24A8A)
-I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h)(0x62D24A8A)
-I (..\User\motor\foc_driver.h)(0x64BFE269)
+I (..\User\motor\foc_driver.h)(0x64BFE5A2)
 I (..\User\driver\drivers.h)(0x64BFCB06)
 I (..\User\driver\adc_driver.h)(0x64BFBF7B)
 I (..\User\bsp\adc_bsp.h)(0x64BFCA3A)
 I (..\User\utils\vofa.h)(0x64BA8448)
-F (..\User\motor\foc_calculate.c)(0x64BFE1A2)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../USB_Device/App -I ../USB_Device/Target -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ..\User\motor -I ..\User\utils -I ..\User\bsp -I ..\User\driver-I.\RTE\_foc_driver-IC:\Users\QQ452\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\QQ452\AppData\Local\Arm\Packs\Keil\STM32G4xx_DFP\1.2.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o foc_driver\foc_calculate.o --omf_browse foc_driver\foc_calculate.crf --depend foc_driver\foc_calculate.d)
-I (..\User\motor\foc_calculate.h)(0x64BFE1C7)
+F (..\User\motor\foc_calculate.c)(0x64C14311)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../USB_Device/App -I ../USB_Device/Target -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ..\User\motor -I ..\User\utils -I ..\User\bsp -I ..\User\driver-I.\RTE\_foc_driver-IC:\Users\QQ452\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\QQ452\AppData\Local\Arm\Packs\Keil\STM32G4xx_DFP\1.2.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o foc_driver\foc_calculate.o --omf_browse foc_driver\foc_calculate.crf --depend foc_driver\foc_calculate.d)
+I (..\User\motor\foc_calculate.h)(0x64C12E64)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x60252378)
 I (../Core/Inc/tim.h)(0x64BA79C7)
 I (../Core/Inc/main.h)(0x64BA79C7)

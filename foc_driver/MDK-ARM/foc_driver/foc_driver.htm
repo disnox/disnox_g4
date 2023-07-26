@@ -3,7 +3,7 @@
 <title>Static Call Graph - [foc_driver\foc_driver.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image foc_driver\foc_driver.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Jul 25 22:57:28 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Thu Jul 27 00:00:19 2023
 <BR><P>
 <H3>Maximum Stack Usage =        312 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -591,7 +591,7 @@ Global Symbols
 <P><STRONG><a name="[173]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
 <P><STRONG><a name="[34]"></a>ADC1_2_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32g4xx_it.o(i.ADC1_2_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = ADC1_2_IRQHandler &rArr; HAL_ADC_IRQHandler &rArr; HAL_ADCEx_InjectedConvCpltCallback &rArr; adc1_injected_callback &rArr; vofa_start &rArr; vofa_sendframetail &rArr; vofa_transmit &rArr; CDC_Transmit_FS &rArr; USBD_CDC_TransmitPacket &rArr; USBD_LL_Transmit &rArr; HAL_PCD_EP_Transmit &rArr; USB_EPStartXfer &rArr; USB_WritePMA
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = ADC1_2_IRQHandler &rArr; HAL_ADC_IRQHandler &rArr; HAL_ADCEx_InjectedConvCpltCallback &rArr; adc1_injected_callback &rArr; vofa_start &rArr; vofa_sendframetail &rArr; vofa_transmit &rArr; CDC_Transmit_FS &rArr; USBD_CDC_TransmitPacket &rArr; USBD_LL_Transmit &rArr; HAL_PCD_EP_Transmit &rArr; USB_EPStartXfer &rArr; USB_WritePMA
 </UL>
 <BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_IRQHandler
 </UL>
@@ -653,7 +653,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[90]"></a>HAL_ADCEx_InjectedConvCpltCallback</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, adc_bsp.o(i.HAL_ADCEx_InjectedConvCpltCallback))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = HAL_ADCEx_InjectedConvCpltCallback &rArr; adc1_injected_callback &rArr; vofa_start &rArr; vofa_sendframetail &rArr; vofa_transmit &rArr; CDC_Transmit_FS &rArr; USBD_CDC_TransmitPacket &rArr; USBD_LL_Transmit &rArr; HAL_PCD_EP_Transmit &rArr; USB_EPStartXfer &rArr; USB_WritePMA
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = HAL_ADCEx_InjectedConvCpltCallback &rArr; adc1_injected_callback &rArr; vofa_start &rArr; vofa_sendframetail &rArr; vofa_transmit &rArr; CDC_Transmit_FS &rArr; USBD_CDC_TransmitPacket &rArr; USBD_LL_Transmit &rArr; HAL_PCD_EP_Transmit &rArr; USB_EPStartXfer &rArr; USB_WritePMA
 </UL>
 <BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc1_injected_callback
 </UL>
@@ -710,7 +710,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[82]"></a>HAL_ADC_IRQHandler</STRONG> (Thumb, 612 bytes, Stack size 40 bytes, stm32g4xx_hal_adc.o(i.HAL_ADC_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = HAL_ADC_IRQHandler &rArr; HAL_ADCEx_InjectedConvCpltCallback &rArr; adc1_injected_callback &rArr; vofa_start &rArr; vofa_sendframetail &rArr; vofa_transmit &rArr; CDC_Transmit_FS &rArr; USBD_CDC_TransmitPacket &rArr; USBD_LL_Transmit &rArr; HAL_PCD_EP_Transmit &rArr; USB_EPStartXfer &rArr; USB_WritePMA
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = HAL_ADC_IRQHandler &rArr; HAL_ADCEx_InjectedConvCpltCallback &rArr; adc1_injected_callback &rArr; vofa_start &rArr; vofa_sendframetail &rArr; vofa_transmit &rArr; CDC_Transmit_FS &rArr; USBD_CDC_TransmitPacket &rArr; USBD_LL_Transmit &rArr; HAL_PCD_EP_Transmit &rArr; USB_EPStartXfer &rArr; USB_WritePMA
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_LevelOutOfWindowCallback
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_ErrorCallback
@@ -1851,7 +1851,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[91]"></a>adc1_injected_callback</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, foc_control.o(i.adc1_injected_callback))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = adc1_injected_callback &rArr; vofa_start &rArr; vofa_sendframetail &rArr; vofa_transmit &rArr; CDC_Transmit_FS &rArr; USBD_CDC_TransmitPacket &rArr; USBD_LL_Transmit &rArr; HAL_PCD_EP_Transmit &rArr; USB_EPStartXfer &rArr; USB_WritePMA
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = adc1_injected_callback &rArr; vofa_start &rArr; vofa_sendframetail &rArr; vofa_transmit &rArr; CDC_Transmit_FS &rArr; USBD_CDC_TransmitPacket &rArr; USBD_LL_Transmit &rArr; HAL_PCD_EP_Transmit &rArr; USB_EPStartXfer &rArr; USB_WritePMA
 </UL>
 <BR>[Calls]<UL><LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;foc_calculate
 <LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vofa_start
@@ -1882,11 +1882,11 @@ Global Symbols
 <P><STRONG><a name="[131]"></a>foc_calculate</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, foc_calculate.o(i.foc_calculate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = foc_calculate &rArr; sin_cos_val &rArr; __hardfp_sinf &rArr; __mathlib_rredf2
 </UL>
-<BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svpwm
-<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin_cos_val
+<BR>[Calls]<UL><LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin_cos_val
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;park_transform
 <LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inverse_park
 <LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clarke_transform
+<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svpwm_sector
 </UL>
 <BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc1_injected_callback
 </UL>
@@ -1912,7 +1912,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[13a]"></a>motor_foc_para_init</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, foc_control.o(i.motor_foc_para_init))
+<P><STRONG><a name="[13a]"></a>motor_foc_para_init</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, foc_driver.o(i.motor_foc_para_init))
 <BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1929,7 +1929,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;foc_calculate
 </UL>
 
-<P><STRONG><a name="[138]"></a>svpwm</STRONG> (Thumb, 194 bytes, Stack size 0 bytes, foc_calculate.o(i.svpwm))
+<P><STRONG><a name="[138]"></a>svpwm_sector</STRONG> (Thumb, 344 bytes, Stack size 0 bytes, foc_calculate.o(i.svpwm_sector))
 <BR><BR>[Called By]<UL><LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;foc_calculate
 </UL>
 
@@ -1947,8 +1947,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vofa_start
 </UL>
 
-<P><STRONG><a name="[130]"></a>vofa_start</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, vofa.o(i.vofa_start))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = vofa_start &rArr; vofa_sendframetail &rArr; vofa_transmit &rArr; CDC_Transmit_FS &rArr; USBD_CDC_TransmitPacket &rArr; USBD_LL_Transmit &rArr; HAL_PCD_EP_Transmit &rArr; USB_EPStartXfer &rArr; USB_WritePMA
+<P><STRONG><a name="[130]"></a>vofa_start</STRONG> (Thumb, 102 bytes, Stack size 16 bytes, vofa.o(i.vofa_start))
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = vofa_start &rArr; vofa_sendframetail &rArr; vofa_transmit &rArr; CDC_Transmit_FS &rArr; USBD_CDC_TransmitPacket &rArr; USBD_LL_Transmit &rArr; HAL_PCD_EP_Transmit &rArr; USB_EPStartXfer &rArr; USB_WritePMA
 </UL>
 <BR>[Calls]<UL><LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vofa_sendframetail
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vofa_send_data
