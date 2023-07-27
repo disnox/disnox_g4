@@ -4,7 +4,6 @@
 #include "math.h"
 #include "tim.h"
 
-
 #define M_PI					(3.14159265358f)
 #define M_2PI					(6.28318530716f)
 #define SQRT3 					(1.73205080757f)
@@ -18,7 +17,7 @@
 #define min(x,y) 				(((x)<(y))?(x):(y))
 #define max(x,y) 				(((x)>(y))?(x):(y))
 
-extern float value_tmp[3];
+extern float a, b, c;
 
 typedef struct
 {

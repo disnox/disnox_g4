@@ -4,6 +4,7 @@
 #include "usart.h"
 #include "foc_control.h"
 #include "foc_driver.h"
+#include "foc_calculate.h"
 
 #define MAX_BUFFER_SIZE 1024
 uint8_t send_buf[MAX_BUFFER_SIZE];
@@ -24,9 +25,13 @@ void vofa_start(void)
 	vofa_send_data(0, motor.foc.dtc_a * PWM_ARR());
 	vofa_send_data(1, motor.foc.dtc_b * PWM_ARR());
 	vofa_send_data(2, motor.foc.dtc_c * PWM_ARR());
-//	vofa_send_data(0, motor.foc.dtc_a);
-//	vofa_send_data(1, motor.foc.dtc_b);
-//	vofa_send_data(2, motor.foc.dtc_c);
+	vofa_send_data(0, motor.foc.dtc_a);
+	vofa_send_data(1, motor.foc.dtc_b);
+	vofa_send_data(2, motor.foc.dtc_c);
+	
+	vofa_send_data(0, a);
+	vofa_send_data(1, b);
+	vofa_send_data(2, c);
 	vofa_send_data(3, motor.foc.theta);
 	
 	vofa_sendframetail();
