@@ -96,21 +96,21 @@ int main(void)
 		if(HAL_GetTick() - time1 > 200)
 		{
 //			HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-//			led_toggle(led_net_red);
+			led_toggle(led_net_red);
 			time1 = HAL_GetTick();
 		}
 		
 		if(HAL_GetTick() - time2 > 500)
 		{
-//			led_toggle(led_net_blue);
+			led_toggle(led_net_blue);
 			time2 = HAL_GetTick();
 		}
-		led_on(led_net_red);
-		led_on(led_net_blue);
-		HAL_Delay(1000);
+//		led_on(led_net_red);
+//		led_on(led_net_blue);
+//		HAL_Delay(1000);
 //		led_off(led_net_red|led_net_blue);
-		led_off(led_all);
-		HAL_Delay(1000);
+//		led_off(led_all);
+//		HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

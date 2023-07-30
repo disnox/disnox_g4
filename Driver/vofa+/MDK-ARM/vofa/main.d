@@ -55,4 +55,4 @@ vofa\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h
 vofa\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h
 vofa\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h
 vofa\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
-vofa\main.o: ..\User\utils\vofa.h
+vofa\main.o: ../User/utils/vofa.h
