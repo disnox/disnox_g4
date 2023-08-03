@@ -959,6 +959,11 @@
               <FileType>1</FileType>
               <FilePath>..\User\bsp\adc_bsp.c</FilePath>
             </File>
+            <File>
+              <FileName>led_bsp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\bsp\led_bsp.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -968,6 +973,11 @@
               <FileName>adc_driver.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\driver\adc_driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>led_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\driver\led_driver.c</FilePath>
             </File>
           </Files>
         </Group>

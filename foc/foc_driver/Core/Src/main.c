@@ -31,7 +31,10 @@
 #include "usbd_cdc_if.h"
 #include "math.h"
 #include "vofa.h"
+
 #include "adc_driver.h"
+#include "led_driver.h"
+
 #include "foc_control.h"
 #include "foc_driver.h"
 #include "pid.h"
@@ -93,7 +96,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+	uint32_t time;
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -104,23 +107,30 @@ int main(void)
   MX_USART3_UART_Init();
   MX_DAC1_Init();
   MX_SPI1_Init();
-  /* USER CODE BEGIN 2 */
-	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
-	
+  /* USER CODE BEGIN 2 */	
 	adc_driver_init();
+	
+	led_driver_init();
+	
 	motor_foc_para_init();
 	
 	HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 2048);  //ÉèÖÃDACÊä³öÖµ
 	
 	HAL_DAC_Start(&hdac1, DAC_CHANNEL_1);
 	
-	Encoder_init();
+	foc_pwm_start();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		if(HAL_GetTick() - time > 200)
+		{
+			led_toggle(led_net_red|led_net_blue);
+			time = HAL_GetTick();
+		}
 
 //		vofa_start();
 

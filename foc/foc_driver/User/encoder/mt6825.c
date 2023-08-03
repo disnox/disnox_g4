@@ -3,30 +3,15 @@
 #include "spi.h"
 #include "math.h"
 
-tEncoder Encoder;
+magnetic_encoder_para_t mt6825_encoder;
 
-void Encoder_init(void)
+void encoder_init(void)
 {
 		// Init
-	Encoder.count_in_cpr_ = 0;
-	Encoder.shadow_count_ = 0;
-	Encoder.pos_estimate_counts_ = 0.0f;
-	Encoder.vel_estimate_counts_ = 0.0f;
-	Encoder.pos_cpr_counts_ = 0.0f;
-	
-	Encoder.pos_estimate_ = 0.0f;
-	Encoder.vel_estimate_ = 0.0f;
-	Encoder.pos_cpr_ = 0.0f;
-	
-	Encoder.phase_ = 0.0f;
-	Encoder.interpolation_ = 0.0f;
-	
-	int encoder_pll_bandwidth = 2000;
-	Encoder.pll_kp_ = 2.0f * encoder_pll_bandwidth;  				// basic conversion to discrete time
-  Encoder.pll_ki_ = 0.25f * (Encoder.pll_kp_ * Encoder.pll_kp_); 	// Critically damped
+
 }
 
-uint32_t ENCODER_read_raw(void)
+uint32_t encoder_read_raw(void)
 {
 
 	uint8_t data_t[2];
@@ -38,7 +23,6 @@ uint32_t ENCODER_read_raw(void)
 
 	cs_down;
 	HAL_SPI_Transmit(&hspi1,&data_t[0],1,1000);
-	//HAL_SPI_TransmitReceive(&hspi3,&data_t[1],&data_r[3],1,1000);
 	HAL_SPI_TransmitReceive(&hspi1,&data_t[1],&data_r[0],1,1000);
 	HAL_SPI_TransmitReceive(&hspi1,&data_t[1],&data_r[1],1,1000);
 	HAL_SPI_TransmitReceive(&hspi1,&data_t[1],&data_r[2],1,1000);
@@ -53,20 +37,44 @@ uint32_t ENCODER_read_raw(void)
 }
 
 
-void ENCODER_sample(void)
+void encoder_loop(magnetic_encoder_para_t *encoder)
 {
-    Encoder.raw = ENCODER_read_raw();
-		Encoder.pos_abs_ =  Encoder.raw * (360.0f/ 262144.0f) * (M_PI / 180.0f);
+	if(encoder->dir == +1)
+		encoder->raw = encoder_read_raw();
+	else
+		encoder->raw = ENCODER_CPR - encoder_read_raw();
+	
+	/* 磁编码器线性化 */
+	int off_1 = encoder->offset_lut[(encoder->raw) >> 11];                                        // lookup table lower entry
+  int off_2 = encoder->offset_lut[((encoder->raw >> 11) + 1) % 128];                                // lookup table higher entry
+  int off_interp = off_1 + ((off_2 - off_1) * (encoder->raw - ((encoder->raw >> 11) << 11)) >> 11);     // Interpolate between lookup table entries
+  int count = encoder->raw - off_interp;
+	
+	/*  控制计数值在编码器的单周期内 */
+  while (count > ENCODER_CPR) 
+		count -= ENCODER_CPR;
+  while (count < 0) 
+		count += ENCODER_CPR;
+  encoder->count = count;
+
+	encoder->delta_count = encoder->count - encoder->count_prev;
+	encoder->count_prev = encoder->count;
+	while (encoder->delta_count > +ENCODER_CPR_DIV) 
+		encoder->delta_count -= ENCODER_CPR;
+	while (encoder->delta_count < -ENCODER_CPR_DIV) 
+		encoder->delta_count += ENCODER_CPR;
+	
+	encoder->acc_count += encoder->delta_count;
 }
 
 // 归一化角度到 [0,2PI]
-float _normalizeAngle(float angle){
-  float a = fmod(angle, 2*M_PI);   //取余运算可以用于归一化，列出特殊值例子算便知
-  return a >= 0 ? a : (a + 2*M_PI);  
-}
+//float _normalizeAngle(float angle){
+//  float a = fmod(angle, 2*PI);   //取余运算可以用于归一化，列出特殊值例子算便知
+//  return a >= 0 ? a : (a + 2*PI);  
+//}Encoder.pos_abs_ =  Encoder.raw * (360.0f/ 262144.0f) * (PI / 180.0f);
 
-int PP = 21,DIR = -1;
-float _electricalAngle(void){
-  return  _normalizeAngle((float)(DIR *  PP) * Encoder.pos_abs_);
-}
+//int PP = 21,DIR = -1;
+//float _electricalAngle(void){
+//  return  _normalizeAngle((float)(DIR *  PP) * Encoder.pos_abs_);
+//}
 

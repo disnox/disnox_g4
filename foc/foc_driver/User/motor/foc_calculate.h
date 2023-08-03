@@ -23,6 +23,7 @@ typedef struct
 {
 	float theta;         // 电机转子角度
 	float sin_val, cos_val;  // 电机转子角度的sin和cos值
+	float v_bus;
 	
 	// 三相电流和dq坐标系电流
 	float i_a, i_b, i_c;

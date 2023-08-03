@@ -2,40 +2,36 @@
 #define __MT6825_H__
 #include "main.h"
 
-#define M_PI 3.1415926f 
+#define PI 3.1415926f 
 
 #define cs_down HAL_GPIO_WritePin(SPI1_CSN_GPIO_Port,SPI1_CSN_Pin,GPIO_PIN_RESET);
 #define cs_up HAL_GPIO_WritePin(SPI1_CSN_GPIO_Port,SPI1_CSN_Pin,GPIO_PIN_SET);
 
-#define ENCODER_CPR			 262144
-#define ENCODER_CPR_DIV_2	(ENCODER_CPR>>1)
+#define ENCODER_CPR			 262144u
+#define ENCODER_CPR_F		(262144.0f)
+#define ENCODER_CPR_DIV	(ENCODER_CPR>>1)
 
 
-typedef struct sEncoder {
-	int raw;
-	int cnt;
-	float pos_abs_;
-	int count_in_cpr_;
-	int shadow_count_;
-	float pos_estimate_counts_;
-	float vel_estimate_counts_;
-	float pos_cpr_counts_;
-	
-	float pos_estimate_;
-    float vel_estimate_;
-	float pos_cpr_;
-	
-	float phase_;
-	float interpolation_;
+typedef struct 
+{
+	int raw;                          // 磁编码器的原始计数值
+	int dir;                          // 磁编码器的旋转方向，+1 表示顺时针，-1 表示逆时针
+	int32_t count;                    // 磁编码器的当前计数值（在一个完整编码器周期内的计数值）
+	int32_t count_prev;               // 上一个编码器周期的计数值
+	int32_t acc_count;                // 累计计数值（所有编码器周期内的累积计数值）
+	int32_t delta_count;              // 编码器周期内的增量计数值（两个编码器周期之间的差值）
 
-	float pll_kp_;
-	float pll_ki_;
-} tEncoder;
+	int32_t offset_lut[128];          // 用于磁编码器线性化的查找表
 
-extern tEncoder Encoder;
+	float mec_angle;                  // 机械角度，即编码器计数值经过线性化处理后得到的机械角度值
+	float elec_angle;                 // 电角度，对应于机械角度的电机转子位置（根据电机的极对数计算得到）
+
+} magnetic_encoder_para_t;
 
 
-extern void RINE_MT6816_SPI_Get_AngleData(void);
+extern magnetic_encoder_para_t mt6825_encoder;
+
+
 extern void Encoder_init(void);
 extern uint32_t ENCODER_read_raw(void);
 extern void ENCODER_sample(void);

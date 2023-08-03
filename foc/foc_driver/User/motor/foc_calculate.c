@@ -120,6 +120,9 @@ void svpwm_sector(foc_para_t *foc)
 	int sextant;
 	float tx, ty;
 	
+	foc->v_alpha = foc->v_alpha/foc->v_bus;
+	foc->v_beta = foc->v_beta/foc->v_bus;
+	
 	float va = TWO_BY_SQRT3 * foc->v_beta;
 	float vb = foc->v_alpha - ONE_BY_SQRT3 * foc->v_beta;
 	float vc = -foc->v_alpha - ONE_BY_SQRT3 * foc->v_beta;

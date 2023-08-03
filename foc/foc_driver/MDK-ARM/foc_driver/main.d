@@ -64,6 +64,7 @@ foc_driver\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 foc_driver\main.o: ../User/utils/vofa.h
 foc_driver\main.o: ../User/driver/adc_driver.h
 foc_driver\main.o: ../User/bsp/adc_bsp.h
+foc_driver\main.o: ../User/driver/led_driver.h
 foc_driver\main.o: ../User/motor/foc_control.h
 foc_driver\main.o: ../User/motor/foc_calculate.h
 foc_driver\main.o: ../User/motor/foc_driver.h

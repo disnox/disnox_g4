@@ -3,9 +3,24 @@
 
 void motor_foc_para_init(void)
 {
-	motor.theta_acc = 0.0008f;
+	
+	motor.theta_acc = 0.005f;
 	motor.openloop_vd = 0.0f;
-	motor.openloop_vq = 0.1f;
+	motor.openloop_vq = 0.5f;
+	
+	motor.foc.v_bus = 24.0f;
+	
+	motor.foc.dtc_a = 0.0f;
+	motor.foc.dtc_b = 0.0f;
+	motor.foc.dtc_c = 0.0f;
+	
+	motor.foc.ia_last = 0;
+	motor.foc.ib_last = 0;
+	motor.foc.ic_last = 0;
+	
+	motor.foc.ia_offset = 0.0f;
+	motor.foc.ib_offset = 0.0f;
+	motor.foc.ic_offset = 0.0f;
 }
 
 
