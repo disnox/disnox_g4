@@ -118,7 +118,10 @@ int main(void)
 	
 	HAL_DAC_Start(&hdac1, DAC_CHANNEL_1);
 	
-	foc_pwm_start();
+	HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_4);
+	TIM1->CCR4 = 8450;
+	
+	encoder_init(&mt6825_encoder);
 
   /* USER CODE END 2 */
 

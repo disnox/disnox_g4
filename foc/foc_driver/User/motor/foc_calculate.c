@@ -14,8 +14,8 @@ void foc_calculate(foc_para_t *foc)
 	clarke_transform(foc);
 	park_transform(foc);
 	inverse_park(foc);
-//	svpwm_midpoint(foc);
-	svpwm_sector(foc);
+	svpwm_midpoint(foc);
+//	svpwm_sector(foc);
 }
 /**
 ***********************************************************************
@@ -93,6 +93,9 @@ void inverse_park(foc_para_t *foc)
 **/
 void svpwm_midpoint(foc_para_t *foc)
 { 
+	foc->v_alpha = foc->v_alpha/foc->v_bus;
+	foc->v_beta = foc->v_beta/foc->v_bus;
+	
   float va = foc->v_alpha;  
   float vb = -0.5f * foc->v_alpha + SQRT3_BY_2 * foc->v_beta; 
   float vc = -0.5f * foc->v_alpha - SQRT3_BY_2 * foc->v_beta; 
@@ -114,7 +117,7 @@ void svpwm_midpoint(foc_para_t *foc)
 * @details:    通过扇区切换法生成SVPWM的电压向量 
 ***********************************************************************
 **/
-void svpwm_sector(foc_para_t *foc)
+void svpwm_sectr(foc_para_t *foc)
 {
 	float ta, tb, tc;
 	int sextant;
@@ -192,3 +195,110 @@ void svpwm_sector(foc_para_t *foc)
 	foc->dtc_b = tb;
 	foc->dtc_c = tc;
 }
+
+
+#define     TS              	1.0f
+#define 		udc 24.0f
+#define     SQRT3_MULT_TS   (float)((float)TS * SQRT3 / udc)
+
+
+void svpwm_sector(foc_para_t *foc)
+{	
+	float channel1, channel2, channel3;
+	
+	float va = foc->v_beta;
+	float vb = (SQRT3 * foc->v_alpha - foc->v_beta) / 2.0f;
+	float vc = (-SQRT3 * foc->v_alpha - foc->v_beta) / 2.0f;
+	
+	uint8_t a = (va > 0.0f) ? 1 : 0;
+	uint8_t b = (vb > 0.0f) ? 1 : 0;
+	uint8_t c = (vc > 0.0f) ? 1 : 0;
+	
+	uint8_t sextant = (c << 2) + (b << 1) + a;
+	
+	switch(sextant)
+	{
+		case 0:
+		{
+			channel1 = TS / 2;
+			channel2 = TS / 2;
+			channel3 = TS / 2;
+		}break;
+
+		case 3:
+		{
+			float t4 = SQRT3_MULT_TS * vb;
+			float t6 = SQRT3_MULT_TS * va;
+			float t0 = (TS - t4 - t6) / 2;
+			
+			channel1 = t4 + t6 + t0;
+			channel2 = t6 + t0;
+			channel3 = t0;
+		}break;
+
+		case 1:
+		{
+			float t2 = -SQRT3_MULT_TS * vb;
+			float t6 = -SQRT3_MULT_TS * vc;
+			float t0 = (TS - t2 - t6) / 2;
+			
+			channel1 = t6 + t0;
+			channel2 = t2 + t6 + t0;
+			channel3 = t0;
+		}break;
+
+		case 5:
+		{
+			float t2 = SQRT3_MULT_TS * va;
+			float t3 = SQRT3_MULT_TS * vc;
+			float t0 = (TS - t2 - t3) / 2;
+			
+			channel1 = t0;
+			channel2 = t2 + t3 + t0;
+			channel3 = t3 + t0;
+		}break;
+
+		case 4:
+		{
+			float t1 = -SQRT3_MULT_TS * va;
+			float t3 = -SQRT3_MULT_TS * vb;
+			float t0 = (TS - t1 - t3) / 2;
+			
+			channel1 = t0;
+			channel2 = t3 + t0;
+			channel3 = t1 + t3 + t0;
+		}break;
+
+		case 6:
+		{
+			float t1 = SQRT3_MULT_TS * vc;
+			float t5 = SQRT3_MULT_TS * vb;
+			float t0 = (TS - t1 - t5) / 2;
+			
+			channel1 = t5 + t0;
+			channel2 = t0;
+			channel3 = t1 + t5 + t0;
+		}break;
+
+		case 2:
+		{
+			float t4 = -SQRT3_MULT_TS * vc;
+			float t5 = -SQRT3_MULT_TS * va;
+			float t0 = (TS - t4 - t5) / 2;
+			
+			channel1 = t4 + t5 + t0;
+			channel2 = t0;
+			channel3 = t5 + t0;
+		}break;
+
+		default:
+			break;
+		}
+    
+    foc->dtc_a = channel1;
+    foc->dtc_b = channel2;
+    foc->dtc_c = channel3;
+   
+}
+
+

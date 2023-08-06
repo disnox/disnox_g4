@@ -49,8 +49,10 @@ foc_driver\foc_control.o: ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart
 foc_driver\foc_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 foc_driver\foc_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 foc_driver\foc_control.o: ..\User\motor\foc_driver.h
+foc_driver\foc_control.o: ..\User\motor\calibration.h
+foc_driver\foc_control.o: ../User/encoder/mt6825.h
+foc_driver\foc_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 foc_driver\foc_control.o: ../User/driver/drivers.h
 foc_driver\foc_control.o: ../User/driver/adc_driver.h
 foc_driver\foc_control.o: ../User/bsp/adc_bsp.h
 foc_driver\foc_control.o: ../User/utils/vofa.h
-foc_driver\foc_control.o: ../User/encoder/mt6825.h

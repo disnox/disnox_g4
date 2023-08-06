@@ -22,18 +22,21 @@ typedef struct
 	int32_t delta_count;              // 编码器周期内的增量计数值（两个编码器周期之间的差值）
 
 	int32_t offset_lut[128];          // 用于磁编码器线性化的查找表
-
+	uint32_t offset;
+	
 	float mec_angle;                  // 机械角度，即编码器计数值经过线性化处理后得到的机械角度值
 	float elec_angle;                 // 电角度，对应于机械角度的电机转子位置（根据电机的极对数计算得到）
 
-} magnetic_encoder_para_t;
+} mec_enc_para_t;
 
 
-extern magnetic_encoder_para_t mt6825_encoder;
+extern mec_enc_para_t mt6825_encoder;
 
 
-extern void Encoder_init(void);
-extern uint32_t ENCODER_read_raw(void);
-extern void ENCODER_sample(void);
-extern float _electricalAngle(void);
+void encoder_init(mec_enc_para_t *encoder);
+uint32_t encoder_read_raw(void);
+void encoder_loop(mec_enc_para_t *encoder);
+void encoder_read_theta(mec_enc_para_t *encoder, float pp);
+float normalize_angle(float angle);
+
 #endif /* __MT6825_H__ */

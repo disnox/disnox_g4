@@ -1014,6 +1014,11 @@
               <FileType>1</FileType>
               <FilePath>..\User\motor\foc_calculate.c</FilePath>
             </File>
+            <File>
+              <FileName>calibration.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\motor\calibration.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

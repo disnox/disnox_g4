@@ -23,16 +23,19 @@ void vofa_start(void)
 {
 //	vofa_demo();		// demoÊ¾Àý
 	
-	vofa_send_data(0, motor.foc.dtc_a * PWM_ARR());
-	vofa_send_data(1, motor.foc.dtc_b * PWM_ARR());
-	vofa_send_data(2, motor.foc.dtc_c * PWM_ARR());
+	vofa_send_data(0, motor.foc.dtc_a*PWM_ARR());
+	vofa_send_data(1, motor.foc.dtc_b*PWM_ARR());
+	vofa_send_data(2, motor.foc.dtc_c*PWM_ARR());
 	vofa_send_data(3, motor.foc.theta);
-	vofa_send_data(4, Encoder.raw);
-	vofa_send_data(5, _electricalAngle());
 	
-//	vofa_send_data(4, motor.foc.ia_last);
-//	vofa_send_data(5, motor.foc.ib_last);
-//	vofa_send_data(6, motor.foc.ic_last);
+	vofa_send_data(4, mt6825_encoder.raw);
+	vofa_send_data(5, mt6825_encoder.count);
+	vofa_send_data(6, mt6825_encoder.mec_angle);
+	vofa_send_data(7, mt6825_encoder.elec_angle);
+	
+	vofa_send_data(8, motor.foc.ia_last);
+	vofa_send_data(9, motor.foc.ib_last);
+	vofa_send_data(10, motor.foc.ic_last);
 //	
 //	
 	vofa_sendframetail();

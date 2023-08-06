@@ -54,6 +54,7 @@
 "foc_driver\foc_driver.o"
 "foc_driver\foc_control.o"
 "foc_driver\foc_calculate.o"
+"foc_driver\calibration.o"
 "foc_driver\mt6825.o"
 --strict --scatter "foc_driver\foc_driver.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols

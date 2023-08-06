@@ -3,17 +3,21 @@
 #include "spi.h"
 #include "math.h"
 
-magnetic_encoder_para_t mt6825_encoder;
+mec_enc_para_t mt6825_encoder;
 
-void encoder_init(void)
+void encoder_init(mec_enc_para_t *encoder)
 {
-		// Init
-
+	encoder->dir = -1; 
+	encoder->raw = 0;
+	encoder->count = 0;
+	encoder->count_prev = 0;
+	encoder->acc_count = 0;
+	encoder->delta_count = 0;
+	encoder->offset = 155807;
 }
 
 uint32_t encoder_read_raw(void)
 {
-
 	uint8_t data_t[2];
 	uint8_t data_r[4];
 	uint32_t count;
@@ -37,12 +41,13 @@ uint32_t encoder_read_raw(void)
 }
 
 
-void encoder_loop(magnetic_encoder_para_t *encoder)
+void encoder_loop(mec_enc_para_t *encoder)
 {
+	int raw = encoder_read_raw();
 	if(encoder->dir == +1)
-		encoder->raw = encoder_read_raw();
+		encoder->raw = raw;
 	else
-		encoder->raw = ENCODER_CPR - encoder_read_raw();
+		encoder->raw = ENCODER_CPR - raw;
 	
 	/* 磁编码器线性化 */
 	int off_1 = encoder->offset_lut[(encoder->raw) >> 11];                                        // lookup table lower entry
@@ -51,30 +56,45 @@ void encoder_loop(magnetic_encoder_para_t *encoder)
   int count = encoder->raw - off_interp;
 	
 	/*  控制计数值在编码器的单周期内 */
-  while (count > ENCODER_CPR) 
+  if (count > ENCODER_CPR) 
 		count -= ENCODER_CPR;
-  while (count < 0) 
+  if (count < 0) 
 		count += ENCODER_CPR;
   encoder->count = count;
+	
+	
 
 	encoder->delta_count = encoder->count - encoder->count_prev;
 	encoder->count_prev = encoder->count;
-	while (encoder->delta_count > +ENCODER_CPR_DIV) 
-		encoder->delta_count -= ENCODER_CPR;
-	while (encoder->delta_count < -ENCODER_CPR_DIV) 
-		encoder->delta_count += ENCODER_CPR;
+//	if (encoder->delta_count > +ENCODER_CPR_DIV) 
+//		encoder->delta_count -= ENCODER_CPR;
+//	if (encoder->delta_count < -ENCODER_CPR_DIV) 
+//		encoder->delta_count += ENCODER_CPR;
 	
 	encoder->acc_count += encoder->delta_count;
 }
+int32_t cali_theta;
+void encoder_read_theta(mec_enc_para_t *encoder, float pp)
+{
+	encoder_loop(encoder);
+	/* 处理编码器数据获得机械角度 */
+	cali_theta = encoder->count - encoder->offset;
+	/*  控制计数值在编码器的单周期内 */
+  if (cali_theta > ENCODER_CPR) 
+		cali_theta -= ENCODER_CPR;
+  if (cali_theta < 0) 
+		cali_theta += ENCODER_CPR;
+	
+	encoder->mec_angle =  normalize_angle(cali_theta * (360.0f/ 262144.0f) * (PI / 180.0f));
+	encoder->elec_angle = normalize_angle(pp * encoder->mec_angle);
+}
 
 // 归一化角度到 [0,2PI]
-//float _normalizeAngle(float angle){
-//  float a = fmod(angle, 2*PI);   //取余运算可以用于归一化，列出特殊值例子算便知
-//  return a >= 0 ? a : (a + 2*PI);  
-//}Encoder.pos_abs_ =  Encoder.raw * (360.0f/ 262144.0f) * (PI / 180.0f);
+float normalize_angle(float angle)
+{
+  float a = fmod(angle, 2*PI);   //取余运算可以用于归一化
+  return a >= 0 ? a : (a + 2*PI);  
+}
 
-//int PP = 21,DIR = -1;
-//float _electricalAngle(void){
-//  return  _normalizeAngle((float)(DIR *  PP) * Encoder.pos_abs_);
-//}
+
 
