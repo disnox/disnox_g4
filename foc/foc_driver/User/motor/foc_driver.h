@@ -52,6 +52,13 @@ typedef struct
 	
 	float openloop_vd;
 	float openloop_vq;
+	
+	float inductance;
+	float resistance;
+	
+	float i_kp;
+	float i_ki;
+	
 }motor_ctrl_t; 
 
 extern motor_ctrl_t motor;

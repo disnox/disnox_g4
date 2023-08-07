@@ -5,6 +5,13 @@
 #include "vofa.h"
 #include "mt6825.h"
 
+void foc_update_current_ctrl_gain(uint16_t bandwidth)
+{
+    motor.i_kp = motor.inductance * bandwidth;
+    motor.i_ki = motor.resistance * bandwidth;
+}
+
+
 uint16_t adc1_offset;
 void adc1_injected_callback(void)
 {
